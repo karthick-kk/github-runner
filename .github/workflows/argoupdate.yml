@@ -1,0 +1,35 @@
+# This workflow is to update the kubernetes deployment app to initate GITOPS
+
+name: argo-update
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - '1.0.0/Dockerfile'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Export tag version
+        run: |
+          latest_tag=`git describe --tags`
+          echo "ltag=$latest_tag" >> $GITHUB_ENV 
+      - uses: actions/checkout@master
+        with:
+          repository: karthick-kk/argo-githubrunner
+          token: ${{ secrets.GITKEN }}
+      - name: Update deployment image version of k8
+        run: |
+          sed -i 's/\(github-runner:\).*/\1'"$ltag"'/g' github-runner/deployments/runner.yaml
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITKEN }}
+          repository: karthick-kk/argo-githubrunner
+          branch: ${{ github.ref }}
