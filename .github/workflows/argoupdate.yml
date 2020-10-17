@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Export tag version
         run: |
-          latest_tag=`git describe --tags`
+          latest_tag=`git describe --tags|awk -F- '{print $1}'`
           echo "ltag=$latest_tag" >> $GITHUB_ENV 
       - uses: actions/checkout@master
         with:
