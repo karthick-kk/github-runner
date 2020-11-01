@@ -6,7 +6,7 @@ on:
   push:
     branches: [ master ]
     paths: 
-      - '1.0.0/Dockerfile'
+      - 'Dockerfile'
 
 jobs:
   build:
