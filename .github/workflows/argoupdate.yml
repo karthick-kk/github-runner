@@ -5,10 +5,6 @@ name: argo-update
 on:
   push:
     branches: [ master ]
-    paths: 
-      - 'Dockerfile'
-    tags:
-      - v*.*.*
 jobs:
   build:
     runs-on: ubuntu-latest
