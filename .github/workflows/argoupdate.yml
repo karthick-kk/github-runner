@@ -2,10 +2,10 @@
 
 name: argo-update
 
-on:
-  push:
-    paths:
-    - 'Dockerfile'
+on: create
+#  push:
+#    paths:
+#    - 'Dockerfile'
 jobs:
   build:
     runs-on: ubuntu-latest
