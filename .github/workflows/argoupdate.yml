@@ -2,7 +2,10 @@
 
 name: argo-update
 
-on: create
+on:
+  push:
+    tags:
+      - '*'
 #  push:
 #    paths:
 #    - 'Dockerfile'
