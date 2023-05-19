@@ -10,7 +10,7 @@ ENV GITHUB_REPOSITORY ""
 ENV RUNNER_WORKDIR "_work"
 ENV RUNNER_LABELS "self-hosted"
 ENV RUNNER_ALLOW_RUNASROOT=true
-ENV GH_RUNNER_VERSION=""
+ENV GH_RUNNER_VERSION="2.304.0"
 
 # Labels
 LABEL maintainer="github.com/karthick-kk" \
